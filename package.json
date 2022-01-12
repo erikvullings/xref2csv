@@ -1,6 +1,6 @@
 {
   "name": "xref2csv",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Convert XREF bibliography file (in XML) to semicolon delimited CSV for ASreview.",
   "main": "dist/index.js",
   "types": "dist.index.d.ts",
