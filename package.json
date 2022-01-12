@@ -16,9 +16,9 @@
     "start": "tsc -w",
     "build": "tsc -b",
     "dry-run": "npm publish --dry-run",
-    "patch-release": "npm run clean && npm run build && npm version patch --force -m \"Patch release\" && npm publish && git push --follow-tags",
-    "minor-release": "npm run clean && npm run build && npm version minor --force -m \"Minor release\" && npm publish && git push --follow-tags",
-    "major-release": "npm run clean && npm run build && npm version major --force -m \"Major release\" && npm publish && git push --follow-tags"
+    "patch-release": "npm run build && npm version patch --force -m \"Patch release\" && npm publish && git push --follow-tags",
+    "minor-release": "npm run build && npm version minor --force -m \"Minor release\" && npm publish && git push --follow-tags",
+    "major-release": "npm run build && npm version major --force -m \"Major release\" && npm publish && git push --follow-tags"
   },
   "keywords": [
     "XML",
