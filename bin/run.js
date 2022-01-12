@@ -1,4 +1,4 @@
 #! /usr/bin/env node
 
-const xref2csv = require('../dist/index');
+import xref2csv from '../dist/index.js';
 xref2csv;
