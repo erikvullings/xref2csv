@@ -1,0 +1,48 @@
+{
+  "name": "xref2csv",
+  "version": "0.1.0",
+  "description": "Convert XREF bibliography file (in XML) to semicolon delimited CSV for ASreview.",
+  "main": "dist/index.js",
+  "types": "dist.index.d.ts",
+  "type": "module",
+  "bin": {
+    "minify-geojson": "./bin/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikvullings/xref2csv.git"
+  },
+  "scripts": {
+    "start": "tsc -w",
+    "build": "tsc -b",
+    "dry-run": "npm publish --dry-run",
+    "patch-release": "npm run clean && npm run build && npm version patch --force -m \"Patch release\" && npm publish && git push --follow-tags",
+    "minor-release": "npm run clean && npm run build && npm version minor --force -m \"Minor release\" && npm publish && git push --follow-tags",
+    "major-release": "npm run clean && npm run build && npm version major --force -m \"Major release\" && npm publish && git push --follow-tags"
+  },
+  "keywords": [
+    "XML",
+    "conversion",
+    "XREF",
+    "CSV",
+    "ASreview"
+  ],
+  "dependencies": {
+    "command-line-args": "^5.2.0",
+    "saxy": "^0.7.3",
+    "strip-bom-stream": "^5.0.0",
+    "tslib": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/command-line-args": "^5.2.0",
+    "@types/node": "^17.0.8",
+    "@types/readable-stream": "^2.3.13",
+    "typescript": "^4.5.4"
+  },
+  "author": "Erik Vullings <erik.vullings@tno.nl>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erikvullings/xref2csv/issues"
+  },
+  "homepage": "https://github.com/erikvullings/xref2csv#readme"
+}
