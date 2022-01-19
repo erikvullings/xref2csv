@@ -7,10 +7,19 @@
     {
       "type": "pwa-node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Process TNO records",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}\\src\\index.ts",
-      "args": ["c:/Users/vullingshjlm/Downloads/ASreview/Xref-Totaal_rec_in_repository.xml"],
+      "args": ["-s", "c:/Users/vullingshjlm/Downloads/ASreview/Xref-Totaal_rec_in_repository.xml"],
+      "outFiles": ["${workspaceFolder}/**/dist/*.js"]
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Process all records",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}\\src\\index.ts",
+      "args": ["-s", "c:/Users/vullingshjlm/Downloads/ASreview/Xref-Totaal.xml"],
       "outFiles": ["${workspaceFolder}/**/dist/*.js"]
     }
   ]

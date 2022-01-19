@@ -7,15 +7,15 @@ import Saxy from 'saxy';
 import { isOK, noHtml } from './utils.js';
 
 const optionDefinitions = [
-  { name: 'verbose', alias: 'v', type: Boolean },
   { name: 'file', type: String, defaultOption: true },
   { name: 'output', alias: 'o', type: String },
+  { name: 'strict', alias: 's', type: Boolean },
 ] as OptionDefinition[];
 
 type Options = {
   file: string;
   output?: string;
-  verbose?: boolean;
+  strict?: boolean;
 };
 
 const options = commandLineArgs(optionDefinitions) as Options;
@@ -49,6 +49,7 @@ type CsvOutput = {
 
 const fieldsOfInterest = ['TTZ', 'ABS', 'SAM', 'TRC', 'AUT', 'NAU', 'LIN', 'URL', 'UNT'];
 
+const isStrict = options.strict;
 let output: CsvOutput;
 let includeDoc = false;
 let key = '';
@@ -101,11 +102,8 @@ parser.on('tagclose', (tag) => {
         output.title = noHtml(txt);
         break;
       }
+      case 'SAM':
       case 'ABS': {
-        output.abstract = noHtml(txt);
-        break;
-      }
-      case 'SAM': {
         output.abstract = noHtml(txt);
         break;
       }
@@ -138,7 +136,7 @@ parser.on('tagclose', (tag) => {
     key = '';
     return;
   }
-  if (tag.name !== 'doc' || !includeDoc || !output.abstract) return;
+  if (tag.name !== 'doc' || (isStrict && !includeDoc) || !output.abstract) return;
   if (counter === 0) {
     parser.push(
       ['record_id', 'title', 'abstract', 'keywords', 'authors', 'doi', 'included'].join(';') + '\n'
@@ -147,9 +145,18 @@ parser.on('tagclose', (tag) => {
   const { record_id, title, abstract, keywords, authors, doi, included } = output;
   parser.push(
     [record_id, title, abstract, keywords, authors, doi, included]
-      .map((s) => (s ? s.toString().replace(/;/g, ' ').replace(/"/g, "'") : s))
+      .map((s) =>
+        s
+          ? typeof s === 'number'
+            ? s
+            : /,|"|;/g.test(s)
+            ? `"${s.replace(/;/g, ' ').replace(/"/g, '""')}"`
+            : s.replace(/;/g, ' ')
+          : s
+      )
       .join(';') + '\n'
   );
+  includeDoc = false;
   counter++;
 });
 
