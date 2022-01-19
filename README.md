@@ -1,6 +1,6 @@
 # xref2csv
 
-Convert XREF bibliography file (in XML) to semicolon delimited CSV for ASreview.
+Convert XREF bibliography file (in XML) to semicolon delimited CSV for [ASreview](https://asreview.nl).
 
 ## Install dependencies
 
