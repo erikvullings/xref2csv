@@ -47,7 +47,7 @@ type CsvOutput = {
   included?: 0 | 1;
 };
 
-const fieldsOfInterest = ['TTZ', 'ABS', 'TRC', 'AUT', 'NAU', 'LIN', 'URL', 'UNT'];
+const fieldsOfInterest = ['TTZ', 'ABS', 'SAM', 'TRC', 'AUT', 'NAU', 'LIN', 'URL', 'UNT'];
 
 let output: CsvOutput;
 let includeDoc = false;
@@ -102,6 +102,10 @@ parser.on('tagclose', (tag) => {
         break;
       }
       case 'ABS': {
+        output.abstract = noHtml(txt);
+        break;
+      }
+      case 'SAM': {
         output.abstract = noHtml(txt);
         break;
       }
