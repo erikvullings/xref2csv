@@ -6,7 +6,7 @@
   "types": "dist.index.d.ts",
   "type": "module",
   "bin": {
-    "minify-geojson": "./bin/run.js"
+    "xref2scv": "./bin/run.js"
   },
   "repository": {
     "type": "git",
